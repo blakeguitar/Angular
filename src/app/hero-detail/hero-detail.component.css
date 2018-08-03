@@ -1,0 +1,18 @@
+button.back {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 0px;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
