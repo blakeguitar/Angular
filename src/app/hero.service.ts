@@ -13,7 +13,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-//Injection
+// Injection
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +30,7 @@ export class HeroService {
   // Private variables
   private heroesUrl = 'api/heroes';  // URL to web api
   private countMessages = 0;
- 
+
   // Get Heroes
   getHeroes(): Observable<Hero[]> {
     this.log('fetching heroes');
@@ -68,7 +68,8 @@ export class HeroService {
   /** POST: add a new hero to the server */
   addHero (hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
-      tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
+      // tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
+      tap((hero: Hero) => this.log(`added hero id=${hero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
   }
@@ -97,25 +98,25 @@ export class HeroService {
   }
 
 
-	/**
+  /**
 	 * Handle Http operation that failed.
 	 * Let the app continue.
 	 * @param operation - name of the operation that failed
 	 * @param result - optional value to return as the observable result
 	 */
-	private handleError<T> (operation = 'operation', result?: T) {
-	  return (error: any): Observable<T> => {
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
 
-	    // TODO: send the error to remote logging infrastructure
-	    console.error(error); // log to console instead
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
 
-	    // TODO: better job of transforming error for user consumption
-	    this.log(`${operation} failed: ${error.message}`);
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
 
-	    // Let the app keep running by returning an empty result.
-	    return of(result as T);
-	  };
-	}
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 
 
 }
